@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>POKEMON</th>
+    <th>TREINADOR</th>
+    <th>Ação</th>
+  </tr>
+  {% for item in dados %}
+  <tr>
+    <td>{{ item[0] }}</td>
+    <td>{{ item[1] }}</td>
+    <td>{{ item[2] }}</td>
+    <td>
+      <form action="{{ url_for('remover_time', id=item[0]) }}" method="POST">
+        <button type="submit">Remover</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>    

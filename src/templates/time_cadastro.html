@@ -1,0 +1,17 @@
+<form action="{{ url_for('cadastrar_time') }}" method="POST">
+  <label for="id_treinador">Treinador:</label>
+  <select name="id_treinador" id="id_treinador" required>
+    {% for t in treinadores %}
+      <option value="{{ t[0] }}">{{ t[1] }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="id_pokemon">Pokémon:</label>
+  <select name="id_pokemon" id="id_pokemon" required>
+    {% for p in pokemons %}
+      <option value="{{ p[0] }}">{{ p[1] }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit">Associar</button>
+</form>

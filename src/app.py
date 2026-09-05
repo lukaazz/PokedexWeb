@@ -115,15 +115,65 @@ def cadastrar_pokemon():
 def listar_times():
     conn = sqlite3.connect('times_pokemon.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT id, id_treinador, id_pokemon FROM times")
+    cursor.execute("SELECT times.id, pokedex.pokemon, treinador.nome FROM times JOIN treinador ON times.id_treinador = treinador.id JOIN pokedex ON times.id_pokemon = pokedex.id")
     dados = cursor.fetchall()
     conn.close()
     return render_template("time_lista.html", dados=dados)
 
+# REMOVER TIME
+@app.route("/times/remover/<int:id>", methods=["POST"])
+def remover_time(id):
+    conn = sqlite3.connect('times_pokemon.db')
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA foreign_keys = ON")
+
+    cursor.execute("DELETE FROM times WHERE id = ?", (id,))
+
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for("listar_times"))
+
 # CADASTRAR TIME 
 @app.route("/times/cadastro", methods=["GET", "POST"])
 def cadastrar_time():
-    return "Em construção"
+
+    conn = sqlite3.connect('times_pokemon.db')
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA foreign_keys = ON")
+
+    if request.method == "POST":
+    
+        id_treinador = request.form["id_treinador"]
+        id_pokemon = request.form["id_pokemon"]
+
+        try:
+            cursor.execute("INSERT INTO times (id_treinador, id_pokemon) VALUES (?, ?)", (id_treinador, id_pokemon))
+            conn.commit()
+
+        # trata execeção caso o time cadastrado já exista
+        except sqlite3.IntegrityError:
+            pass
+
+        finally:
+            conn.close()
+
+        
+        return redirect(url_for("listar_times"))
+
+
+    cursor.execute("SELECT id, nome FROM treinador")
+    dados_treinador = cursor.fetchall()  
+
+    cursor.execute("SELECT id, pokemon FROM pokedex")
+    dados_pokedex = cursor.fetchall()  
+
+    conn.close()
+    
+    return render_template("time_cadastro.html", treinadores=dados_treinador, pokemons=dados_pokedex)
+    
+# =================================================================================
+
 
 
 
