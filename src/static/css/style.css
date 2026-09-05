@@ -1,0 +1,201 @@
+/* ============================================================
+   Identidade visual: vermelho e branco, inspirada em Pokémon
+   Contrastes verificados no WebAIM Contrast Checker conforme
+   WCAG 2.1 AA (texto normal >= 4,5:1 / elementos gráficos >= 3:1)
+   ============================================================ */
+
+:root {
+  --cor-fundo: #FFF9F7;
+  --cor-superficie: #FFFFFF;
+  --cor-vermelho: #B3001B;      /* texto/botões: 7,16:1 sobre branco */
+  --cor-vermelho-vivo: #E3350D; /* só decoração e títulos grandes (4,39:1) */
+  --cor-texto: #1A1A1A;
+  --cor-texto-suave: #4D4D4D;
+  --cor-borda: #E8D6D2;
+  --cor-foco: #1A1A1A;
+  --raio: 8px;
+  --altura-minima-clique: 44px; /* item 6 do guia */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  line-height: 1.5;
+}
+
+h1, h2, h3, legend {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--cor-vermelho);
+  line-height: 1.2;
+}
+h1 { font-size: 1.75rem; margin: 0 0 1rem; }
+h2 { font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
+
+/* Item 3: link para pular direto ao conteúdo, visível ao focar via Tab */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--cor-vermelho);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* Cabeçalho e navegação */
+.cabecalho {
+  background: var(--cor-vermelho);
+  color: #fff;
+  padding: 1rem;
+}
+.marca { margin: 0 0 0.5rem; font-size: 1.5rem; font-weight: 700; }
+.navegacao ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+.navegacao a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--altura-minima-clique);
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--raio);
+}
+.navegacao a:hover { background: rgba(255, 255, 255, 0.15); }
+
+.conteudo {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.lista-acoes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.rodape {
+  background: var(--cor-vermelho);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* Item 3: foco sempre visível, nunca outline:none sem substituto */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #fff;
+}
+
+/* Botões (item 6: área mínima de 44x44) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--altura-minima-clique);
+  min-width: var(--altura-minima-clique);
+  padding: 0.6rem 1.25rem;
+  background: var(--cor-vermelho);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--raio);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover { background: #8f0016; }
+
+/* Ação destrutiva: não depende só da cor (item 7) — borda + texto "Remover" */
+.btn-perigo {
+  background: var(--cor-superficie);
+  color: var(--cor-vermelho);
+  border: 2px solid var(--cor-vermelho);
+}
+.btn-perigo:hover { background: var(--cor-vermelho); color: #fff; }
+
+.form-inline { display: inline-block; }
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+caption { text-align: left; padding: 0.5rem 0; font-weight: 600; }
+th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--cor-borda); }
+th { background: #FBEAE6; color: var(--cor-texto); }
+
+/* Formulários */
+.formulario {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  max-width: 480px;
+}
+fieldset { border: none; padding: 0; margin: 0 0 1rem; }
+legend { font-size: 1.1rem; font-weight: 700; padding: 0; margin-bottom: 0.75rem; }
+.campo { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+label { font-weight: 600; color: var(--cor-texto); }
+input[type="text"], select {
+  min-height: var(--altura-minima-clique);
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font-size: 1rem;
+  color: var(--cor-texto);
+  background: #fff;
+}
+input[type="text"]:focus, select:focus { border-color: var(--cor-vermelho); }
+
+/* Item 4 (bônus): conteúdo só para leitores de tela, sem aparecer visualmente */
+.oculto-visual {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Item 8: responsividade — sem rolagem horizontal, tabela vira "cartões" */
+@media (max-width: 480px) {
+  .navegacao ul { flex-direction: column; }
+
+  table, thead, tbody, th, td, tr { display: block; }
+  thead tr { position: absolute; left: -9999px; } /* some visualmente, continua no DOM */
+  tr { margin-bottom: 1rem; border: 1px solid var(--cor-borda); border-radius: var(--raio); }
+  td { border-bottom: none; padding-left: 45%; position: relative; }
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.75rem;
+    width: 40%;
+    font-weight: 700;
+    color: var(--cor-vermelho);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

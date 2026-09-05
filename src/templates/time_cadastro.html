@@ -1,17 +1,31 @@
-<form action="{{ url_for('cadastrar_time') }}" method="POST">
-  <label for="id_treinador">Treinador:</label>
-  <select name="id_treinador" id="id_treinador" required>
-    {% for t in treinadores %}
-      <option value="{{ t[0] }}">{{ t[1] }}</option>
-    {% endfor %}
-  </select>
+{% extends "base.html" %}
+{% block titulo %}Associar treinador e pokémon — Times Pokémon{% endblock %}
+{% block conteudo %}
+<h1>Associar treinador e pokémon</h1>
 
-  <label for="id_pokemon">Pokémon:</label>
-  <select name="id_pokemon" id="id_pokemon" required>
-    {% for p in pokemons %}
-      <option value="{{ p[0] }}">{{ p[1] }}</option>
-    {% endfor %}
-  </select>
+<form action="{{ url_for('cadastrar_time') }}" method="POST" class="formulario">
+  <fieldset>
+    <legend>Nova associação</legend>
 
-  <button type="submit">Associar</button>
+    <div class="campo">
+      <label for="id_treinador">Treinador (obrigatório):</label>
+      <select name="id_treinador" id="id_treinador" required>
+        {% for t in treinadores %}
+          <option value="{{ t[0] }}">{{ t[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="id_pokemon">Pokémon (obrigatório):</label>
+      <select name="id_pokemon" id="id_pokemon" required>
+        {% for p in pokemons %}
+          <option value="{{ p[0] }}">{{ p[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn">Associar</button>
 </form>
+{% endblock %}

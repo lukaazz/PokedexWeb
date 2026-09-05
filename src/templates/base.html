@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Times Pokémon{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <p class="marca">Times Pokémon</p>
+    <nav class="navegacao" aria-label="Navegação principal">
+      <ul>
+        <li><a href="{{ url_for('index') }}">Início</a></li>
+        <li><a href="{{ url_for('listar_treinador') }}">Treinadores</a></li>
+        <li><a href="{{ url_for('listar_pokedex') }}">Pokémon</a></li>
+        <li><a href="{{ url_for('listar_times') }}">Times</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="conteudo">
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  <footer class="rodape">
+    <p>Trabalho de Banco de Dados &mdash; Sistema de Times Pokémon</p>
+  </footer>
+</body>
+</html>

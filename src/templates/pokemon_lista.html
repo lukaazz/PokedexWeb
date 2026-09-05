@@ -1,22 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Pokémon — Times Pokémon{% endblock %}
+{% block conteudo %}
+<h1>Pokémon cadastrados</h1>
+
+<p><a class="btn" href="{{ url_for('cadastrar_pokemon') }}">+ Cadastrar novo pokémon</a></p>
+
 <table>
-  <tr>
-    <th>ID</th>
-    <th>Nome</th>
-    <th>TIPO 1</th>
-    <th>TIPO 2</th>
-    <th>Ação</th>
-  </tr>
-  {% for item in dados %}
-  <tr>
-    <td>{{ item[0] }}</td>
-    <td>{{ item[1] }}</td>
-    <td>{{ item[2] }}</td>
-    <td>{{ item[3] }}</td>
-    <td>
-      <form action="{{ url_for('remover_pokemon', id=item[0]) }}" method="POST">
-        <button type="submit">Remover</button>
-      </form>
-    </td>
-  </tr>
-  {% endfor %}
-</table>    
+  <caption class="oculto-visual">Lista de pokémon cadastrados, com opção de remoção</caption>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Tipo 1</th>
+      <th scope="col">Tipo 2</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in dados %}
+    <tr>
+      <td data-label="ID">{{ item[0] }}</td>
+      <td data-label="Nome">{{ item[1] }}</td>
+      <td data-label="Tipo 1">{{ item[2] }}</td>
+      <td data-label="Tipo 2">{{ item[3] if item[3] else "—" }}</td>
+      <td data-label="Ação">
+        <form action="{{ url_for('remover_pokemon', id=item[0]) }}" method="POST" class="form-inline">
+          <button type="submit" class="btn btn-perigo" aria-label="Remover pokémon {{ item[1] }}">Remover</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

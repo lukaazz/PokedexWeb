@@ -1,5 +1,18 @@
-<form action="{{ url_for('cadastrar_treinador') }}" method="POST">
-  <label for="nome">Nome do treinador:</label>
-  <input type="text" name="nome" id="nome" required>
-  <button type="submit">Cadastrar</button>
+{% extends "base.html" %}
+{% block titulo %}Cadastrar treinador — Times Pokémon{% endblock %}
+{% block conteudo %}
+<h1>Cadastrar treinador</h1>
+
+<form action="{{ url_for('cadastrar_treinador') }}" method="POST" class="formulario">
+  <fieldset>
+    <legend>Dados do treinador</legend>
+
+    <div class="campo">
+      <label for="nome">Nome do treinador (obrigatório):</label>
+      <input type="text" name="nome" id="nome" required>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn">Cadastrar</button>
 </form>
+{% endblock %}
