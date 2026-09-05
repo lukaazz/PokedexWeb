@@ -171,6 +171,33 @@ def cadastrar_time():
     conn.close()
     
     return render_template("time_cadastro.html", treinadores=dados_treinador, pokemons=dados_pokedex)
+
+# EDITAR POKEMON
+@app.route("/pokedex/editar/<int:id>", methods=["GET", "POST"])
+def editar_pokemon(id):
+    conn = sqlite3.connect('times_pokemon.db')
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+        # usuário enviou o formulário preenchido -> atualizar o banco
+        nome = request.form["nome"]
+        tipo1 = request.form["tipo1"]
+        tipo2 = request.form["tipo2"]
+
+        cursor.execute(
+            "UPDATE pokedex SET pokemon = ?, tipo1 = ?, tipo2 = ? WHERE id = ?",
+            (nome, tipo1, tipo2, id)
+        )
+        conn.commit()
+        conn.close()
+        return redirect(url_for("listar_pokedex"))
+
+    else:
+        # GET -> precisa buscar o registro atual para pré-preencher o form
+        cursor.execute("SELECT * FROM pokedex WHERE id = ?", (id,))
+        registro = cursor.fetchone()
+        conn.close()
+        return render_template("pokemon_editar.html", registro=registro)
     
 # =================================================================================
 

@@ -24,7 +24,9 @@
       <td data-label="Tipo 1">{{ item[2] }}</td>
       <td data-label="Tipo 2">{{ item[3] if item[3] else "—" }}</td>
       <td data-label="Ação">
-        <form action="{{ url_for('remover_pokemon', id=item[0]) }}" method="POST" class="form-inline">
+        <a class="btn" href="{{ url_for('editar_pokemon', id=item[0]) }}">Editar</a>
+        <form action="{{ url_for('remover_pokemon', id=item[0]) }}" method="POST" class="form-inline"
+            onsubmit="return confirm('Tem certeza que deseja remover este pokémon?')">
           <button type="submit" class="btn btn-perigo" aria-label="Remover pokémon {{ item[1] }}">Remover</button>
         </form>
       </td>

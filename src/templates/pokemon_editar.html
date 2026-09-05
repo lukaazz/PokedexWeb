@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Editar pokémon — Times Pokémon{% endblock %}
+{% block conteudo %}
+<h1>Editar pokémon</h1>
+
+<form action="{{ url_for('editar_pokemon', id=registro[0]) }}" method="POST" class="formulario">
+    <fieldset>
+        <legend>Dados do pokémon</legend>
+
+        <div class="campo">
+            <label for="nome">Nome do pokémon (obrigatório):</label>
+            <input type="text" name="nome" id="nome" value="{{ registro[1] }}" required>
+        </div>
+
+        <div class="campo">
+            <label for="tipo1">Tipo 1 (obrigatório):</label>
+            <input type="text" name="tipo1" id="tipo1" value="{{ registro[2] }}" required>
+        </div>
+
+        <div class="campo">
+            <label for="tipo2">Tipo 2 (opcional):</label>
+            <input type="text" name="tipo2" id="tipo2" value="{{ registro[3] if registro[3] else '' }}">
+        </div>
+    </fieldset>
+
+    <button type="submit" class="btn">Salvar alterações</button>
+</form>
+{% endblock %}
