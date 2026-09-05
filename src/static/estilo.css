@@ -168,6 +168,10 @@ input[type="text"], select {
   background: #fff;
 }
 input[type="text"]:focus, select:focus { border-color: var(--cor-vermelho); }
+input::placeholder {
+  color: var(--cor-texto-suave); /* #4D4D4D, que você já tem no seu estilo.css */
+  opacity: 0.5; /* alguns navegadores aplicam opacidade extra por padrão */
+}
 
 /* Item 4 (bônus): conteúdo só para leitores de tela, sem aparecer visualmente */
 .oculto-visual {

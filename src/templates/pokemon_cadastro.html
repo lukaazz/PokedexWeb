@@ -4,25 +4,25 @@
 <h1>Cadastrar pokémon</h1>
 
 <form action="{{ url_for('cadastrar_pokemon') }}" method="POST" class="formulario">
-  <fieldset>
-    <legend>Dados do pokémon</legend>
+    <fieldset>
+        <legend>Dados do pokémon</legend>
 
-    <div class="campo">
-      <label for="nome">Nome do pokémon (obrigatório):</label>
-      <input type="text" name="nome" id="nome" required>
-    </div>
+        <div class="campo">
+            <label for="nome">Nome do pokémon (obrigatório):</label>
+            <input type="text" name="nome" id="nome" placeholder="Ex.: Dragonite" required>
+        </div>
 
-    <div class="campo">
-      <label for="tipo1">Tipo 1 (obrigatório):</label>
-      <input type="text" name="tipo1" id="tipo1" required>
-    </div>
+        <div class="campo">
+            <label for="tipo1">Tipo 1 (obrigatório):</label>
+            <input type="text" name="tipo1" id="tipo1" placeholder="Ex.: Dragão" required>
+        </div>
 
-    <div class="campo">
-      <label for="tipo2">Tipo 2 (opcional):</label>
-      <input type="text" name="tipo2" id="tipo2">
-    </div>
-  </fieldset>
+        <div class="campo">
+            <label for="tipo2">Tipo 2 (opcional):</label>
+            <input type="text" name="tipo2" id="tipo2" placeholder="Ex.: Voador">
+        </div>
+    </fieldset>
 
-  <button type="submit" class="btn">Cadastrar</button>
+    <button type="submit" class="btn">Cadastrar</button>
 </form>
 {% endblock %}
